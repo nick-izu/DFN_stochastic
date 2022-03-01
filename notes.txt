@@ -1,0 +1,1 @@
+python create_dfn.py -name /dfnWorks/work/DFN_stochastic -input stochastic.txt -ncpu 4
