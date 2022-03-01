@@ -1,0 +1,39 @@
+Author: Rosie Leone
+Date: 12/8/21
+
+
+This folder contains the dfnWorks input file and dfnWorks output and ECPM output of 10 different realizations for the initial crystalline reference case. 
+Each folder contains a different realization and bulk statistical properties are provided in the folder: bulk_properties. 
+The ECPM output is provided with and without user defined fractures and the DFN output includes user defined fractures.
+
+Below is a description of the files in the folder:
+
+ref_case.dat - dfnGen input file (points to user3_mod_input.dat)
+user3_mod_input.dat - specifies size, shape, and location of the user defined fractures
+create_dfn.py - python script which calls dfnWorks to generate the DFN and then post-processes the transmissivity to match fracture family values in the task specification
+mapdfn2pflotran.py - python script to create the ECPM from DFN output. In the file, tortuosity is used as a correction 
+factor to get the same effective diffusion coefficient everywhere and upscaled porosity is fracture porosity
+
+In each realization folder:
+
+aperture.dat - fracture apertures (dfnGen output)
+perm.dat - fracture permeabilities (dfnGen output)
+radii_Final.dat - fracture radii (dfnGen output)
+normal_vectors.dat - fracture orientation: unit vector normal to the fracture plane (dfnGen output)
+translations.dat - (x,y,z) coordinates of fracture centers (dfnGen output)
+polygons.dat - (x,y,z) coordinates of fracture verticies (for teams who need this as input)
+
+anistropic_k.h5 - upscaled anistropic permeabilities (mapdfn2pflotran.py output)
+isotropic_k.h5 - upscaled isotropic permeabilities  (mapdfn2pflotran.py output)
+materials.h5 - 1 denotes fracture cell, 0 denotes matrix (mapdfn2pflotran.py output)
+porosity.h5 - upscaled porosity/fracture porosity (mapdfn2pflotran.py output)
+tortuosity.h5 - upscaled tortuosity, used as a correction factor to get same effective diffusion coefficient everywhere (mapdfn2pflotran.py output)
+
+In the bulk_properties folder:
+domain_average_mean_and_std-100.csv - Bulk properties for 100 different realizations
+domain_average_mean_and_std-10.csv - Bulk properties for the 10 realizations provided
+
+SAND2021-15789 O
+
+Sandia National Laboratories is a multimission laboratory managed and operated by National Technology & Engineering Solutions of Sandia, LLC, 
+a wholly owned subsidiary of Honeywell International Inc., for the U.S. Department of Energy’s National Nuclear Security Administration under contract DE-NA0003525.
